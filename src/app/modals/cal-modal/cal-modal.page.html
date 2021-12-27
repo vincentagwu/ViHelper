@@ -46,9 +46,16 @@
       <!-- <ion-datetime *ngIf="showStartTimePicker" #dateTimeStart  [value]="dateStartValue" (ionChange)="updateStartTime(dateTimeStart.value)" 
       size="cover" showDefaultButtons="true" (ionCancel)= "showStartTimePicker = false;">
       </ion-datetime> -->
-      <ion-item (click)="openStartDateModal()">
+      <ion-item *ngIf="titleHeader == 'Schichtdaten'" (click)="openStartDateModal()">
         <ion-icon name="calendar" slot="start" color="primary"></ion-icon>
         <ion-label>Schichtstart</ion-label>
+        <ion-text slot="end">
+          {{startTime}}
+        </ion-text>
+      </ion-item>
+      <ion-item *ngIf="titleHeader == 'Termindaten'" (click)="openStartDateModal()">
+        <ion-icon name="calendar" slot="start" color="primary"></ion-icon>
+        <ion-label>Terminstart</ion-label>
         <ion-text slot="end">
           {{startTime}}
         </ion-text>
@@ -77,9 +84,17 @@
       size="cover" showDefaultButtons="true" (ionCancel)= "showEndTimePicker = false;">
       </ion-datetime> -->
 
-      <ion-item (click)="openEndDateModal()">
+      <ion-item *ngIf="titleHeader == 'Schichtdaten'" (click)="openEndDateModal()">
         <ion-icon name="calendar" slot="start" color="primary"></ion-icon>
         <ion-label>Schichtende</ion-label>
+        <ion-text slot="end">
+          {{endTime}}
+        </ion-text>
+      </ion-item>
+
+      <ion-item *ngIf="titleHeader == 'Termindaten'" (click)="openEndDateModal()">
+        <ion-icon name="calendar" slot="start" color="primary"></ion-icon>
+        <ion-label>Terminende</ion-label>
         <ion-text slot="end">
           {{endTime}}
         </ion-text>

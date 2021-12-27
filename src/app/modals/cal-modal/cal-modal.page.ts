@@ -24,8 +24,10 @@ export class CalModalPage implements OnInit {
   viewTitle: string;
   title: string;
   desc: string;
-  startTime = format(new Date(), 'yyyy-MM-dd') + 'T' + (new Date(new Date().getTime())).toLocaleTimeString().toString() + '.000Z';
-  endTime = format(new Date(), 'yyyy-MM-dd') + 'T' + (new Date(new Date().getTime())).toLocaleTimeString().toString() + '.000Z';
+  //startTime = format(new Date(), 'yyyy-MM-dd') + 'T' + (new Date(new Date().getTime())).toLocaleTimeString().toString() + '.000Z';
+  //endTime = format(new Date(), 'yyyy-MM-dd') + 'T' + (new Date(new Date().getTime())).toLocaleTimeString().toString() + '.000Z';
+  startTime ;
+  endTime;
 
   dateStartValue ;
   dateEndValue ;
@@ -51,7 +53,10 @@ export class CalModalPage implements OnInit {
  
   modalReady = false;
  
-  constructor(private modalCtrl: ModalController, private alertCtrl: AlertController,  public router: Router,) { }
+  constructor(private modalCtrl: ModalController, private alertCtrl: AlertController,  public router: Router,) {
+    this.dateStartValue = this.startTime;
+    this.dateEndValue = this.endTime;
+   }
  
   ngOnInit() {
    
@@ -65,9 +70,10 @@ export class CalModalPage implements OnInit {
   }
 
   setToday(){
-    this.startTime = format(parseISO(format(new Date(), 'yyyy-MM-dd')), 'HH:mm, MMM d, yyyy');
-    this.endTime = format(parseISO(format(new Date(), 'yyyy-MM-dd')), 'HH:mm, MMM d, yyyy');
+    this.startTime =format(parseISO(format(new Date(this.startTime), 'yyyy-MM-dd')), new Date(this.startTime).getHours() + ':'+ (new Date(this.startTime).getMinutes().toLocaleString().length > 1 ? new Date(this.startTime).getMinutes() : '0' + new Date(this.startTime).getMinutes() )+ ', MMM d, yyyy');
+    this.endTime =format(parseISO(format(new Date(this.endTime), 'yyyy-MM-dd')), new Date(this.endTime).getHours() + ':'+ (new Date(this.endTime).getMinutes().toLocaleString().length > 1 ? new Date(this.endTime).getMinutes() : '0' + new Date(this.endTime).getMinutes() )+ ', MMM d, yyyy');
   }
+ 
  
   updateStartTime(value) {
     this.dateStartValue = value;
@@ -162,7 +168,8 @@ export class CalModalPage implements OnInit {
       cssClass: 'date-modal',
       swipeToClose: true,
       componentProps: {
-        date: this.dateStartValue
+        dateValue: this.dateStartValue,
+        time: this.dateStartValue
       },
       presentingElement: await this.modalCtrl.getTop()
     });
@@ -188,7 +195,8 @@ export class CalModalPage implements OnInit {
       cssClass: 'date-modal',
       swipeToClose: true,
       componentProps: {
-        date: this.dateStartValue
+        dateValue: this.dateStartValue,
+        time: this.dateStartValue
       },
       presentingElement: await this.modalCtrl.getTop()
     });
@@ -200,7 +208,6 @@ export class CalModalPage implements OnInit {
 
       console.log(result.data);
       if (result.data && result.data.date) {
-        console.log("Test");
         this.dateStartValue = result.data.date;
         this.startTime = format(parseISO(result.data.date), 'HH:mm, MMM d, yyyy');
         //this.startTime = value;

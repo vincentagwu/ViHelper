@@ -7,6 +7,7 @@ import { ModalTimerPage } from './../modals/modal-timer/modal-timer.page';
 import { formatDate } from '@angular/common';
 import { MenuController } from '@ionic/angular';
 import { timer, Observable } from 'rxjs';
+import {format, parseISO,} from 'date-fns';
 import * as moment from "moment"; 
 
 @Component({
@@ -24,6 +25,7 @@ export class Tab1Page {
   viewTitle;
   pauseTime = ['00:00', '00:30', '00:45'];
   did_tutorial ;
+  selectedDate;
 
   calendar = {
     mode: 'month',
@@ -114,7 +116,11 @@ export class Tab1Page {
       swipeToClose: true,
       presentingElement: this.routerOutlet.nativeEl,
       componentProps: {
-        titleHeader: 'Schichtdaten'
+        titleHeader: 'Schichtdaten',
+        startTime: this.selectedDate,
+        endTime: this.selectedDate, 
+        dateStartValue: this.selectedDate, 
+        dateEndValue: this.selectedDate
       },
     });
    
@@ -263,10 +269,10 @@ export class Tab1Page {
     // else
     //   pause = event.pauseTime;
 
-      if(workHours <= 3){
+      if(workHours < 6){
         pause = this.pauseTime[0];
       }
-      else if(workHours > 3 && workHours < 9){
+      else if(workHours >= 6 && workHours < 9){
         pause = this.pauseTime[1];
       }
       else if(workHours > 9){
@@ -417,8 +423,9 @@ export class Tab1Page {
   // Time slot was clicked
   onTimeSelected(ev) {
     let selected = new Date(ev.selectedTime);
-    // this.event.startTime = new Date(ev.selectedTime);
-    selected.setHours(selected.getHours() + 1);
+    selected.setHours(new Date().getHours(), new Date().getMinutes(), new Date().getSeconds());
+    this.selectedDate = selected;
+    //this.selectedDate = format(parseISO(format(new Date(selected), 'yyyy-MM-dd')), 'HH:mm, MMM d, yyyy');
     // this.event.endTime = new Date(ev.selectedTime);
     console.log('Selected time: ' + ev.selectedTime + ', hasEvents: ' +
         (ev.events !== undefined && ev.events.length !== 0) + ', disabled: ' + ev.disabled);

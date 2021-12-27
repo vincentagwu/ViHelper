@@ -24,7 +24,8 @@ export class Tab3Page {
   @ViewChild(CalendarComponent) myCal: CalendarComponent;
   viewTitle;
   pauseTime = ['00:00', '00:30', '00:45'];
-  did_tutorial ;
+  did_tutorial;
+  selectedDate;
 
   calendar = {
     mode: 'month',
@@ -115,7 +116,11 @@ export class Tab3Page {
       swipeToClose: true,
       presentingElement: this.routerOutlet.nativeEl,
       componentProps: {
-        titleHeader: 'Termindaten'
+        titleHeader: 'Termindaten',
+        startTime: this.selectedDate,
+        endTime: this.selectedDate, 
+        dateStartValue: this.selectedDate, 
+        dateEndValue: this.selectedDate
       },
     });
    
@@ -366,15 +371,16 @@ export class Tab3Page {
     await alert.present();
   }
 }
-  // Time slot was clicked
-  onTimeSelected(ev) {
-    let selected = new Date(ev.selectedTime);
-    // this.event.startTime = new Date(ev.selectedTime);
-    selected.setHours(selected.getHours() + 1);
-    // this.event.endTime = new Date(ev.selectedTime);
-    console.log('Selected time: ' + ev.selectedTime + ', hasEvents: ' +
-        (ev.events !== undefined && ev.events.length !== 0) + ', disabled: ' + ev.disabled);
-  }
+ // Time slot was clicked
+ onTimeSelected(ev) {
+  let selected = new Date(ev.selectedTime);
+  selected.setHours(new Date().getHours(), new Date().getMinutes(), new Date().getSeconds());
+  this.selectedDate = selected;
+  //this.selectedDate = format(parseISO(format(new Date(selected), 'yyyy-MM-dd')), 'HH:mm, MMM d, yyyy');
+  // this.event.endTime = new Date(ev.selectedTime);
+  console.log('Selected time: ' + ev.selectedTime + ', hasEvents: ' +
+      (ev.events !== undefined && ev.events.length !== 0) + ', disabled: ' + ev.disabled);
+}
 
   onCurrentDateChanged(event: Date) {
     console.log('current date change: ' + event);

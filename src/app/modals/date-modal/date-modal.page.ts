@@ -9,14 +9,24 @@ import {format, parseISO} from 'date-fns';
 })
 export class DateModalPage implements OnInit {
   time;
-  dateValue = format(new Date(), 'yyyy-MM-dd') + 'T' + (new Date(new Date().getTime())).toLocaleTimeString().toString() + '.000Z';
+  //dateValue = format(new Date(), 'yyyy-MM-dd') + 'T' + (new Date(new Date().getTime())).toLocaleTimeString().toString() + '.000Z';
+  dateValue;
 
   showTimePicker = false;
 
-  constructor(private modalCtrl: ModalController) { }
+  constructor(private modalCtrl: ModalController) { 
+    
+  }
 
   ngOnInit() {
-    this.setToday();
+    //this.setToday();
+    console.log("time: " + this.time);
+    console.log("dateValue: " + this.dateValue);
+    this.dateValue.setHours(new Date().getHours()-1);
+    console.log("dateValue: " + this.dateValue);
+    var date = format(new Date(this.dateValue), 'yyyy-MM-dd') + 'T' + (new Date(new Date().getTime())).toLocaleTimeString().toString() + '.000Z';
+    this.dateValue = date;
+    this.time = date;
   }
 
   close() {
@@ -39,7 +49,7 @@ export class DateModalPage implements OnInit {
 
   updateTime(value) {
     this.dateValue = value;
-    this.time = format(parseISO(value), 'HH:mm, MMM d, yyyy');
+    //this.time = format(parseISO(value), 'HH:mm, MMM d, yyyy');
     //this.startTime = value;
     this.showTimePicker = false;
   }
