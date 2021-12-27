@@ -1,0 +1,92 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar >
+    <ion-buttons slot="start">  
+      <ion-menu-button color="secondary" ></ion-menu-button>   
+    </ion-buttons>  
+    <!-- <ion-button slot="end" (click)="loadMap()" shape="round" color="dark">
+      <ion-icon slot="start" name="locate"></ion-icon>
+      Wo bin ich
+    </ion-button> -->
+    <!-- <ion-title slot="end">Google Map</ion-title> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+  <div class="map-wrapper">
+    <div #map_canvas id="map_center">
+    	<ion-icon color="danger" style="zoom:2.0;"  name="pin" slot="icon-only"></ion-icon>
+    </div>
+
+    <!-- <div id="map_center">
+    	<ion-icon color="secondary" style="zoom:2.0;"  name="car" slot="icon-only"></ion-icon>
+    </div> -->
+    <div #map id="map"></div>
+  </div>
+
+  <ion-grid>
+    <!-- <ion-row>
+      <ion-col size="3">
+        <b>Breitengrad</b>
+      </ion-col>
+      <ion-col>
+        {{latitude}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="3">
+        <b>Längengrad</b>
+      </ion-col>
+      <ion-col>
+        {{longitude}}
+      </ion-col>
+    </ion-row> -->
+    <!-- <form [formGroup]="directionForm" (ngSubmit)="calculateAndDisplayRoute(directionForm.value)">
+      <ion-item>
+        <ion-label position="floating">Destination</ion-label>
+        <ion-input formControlName="destination"></ion-input>
+      </ion-item>
+      <ion-button expand="full" type="submit" [disabled]="!directionForm.valid">Get Direction</ion-button>
+    </form> -->
+    <ion-row>
+      <ion-col size="3">
+        <br>
+      </ion-col>
+      <ion-col>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="3">
+        <br>
+      </ion-col>
+      <ion-col>
+      </ion-col>
+    </ion-row> 
+    <ion-row>
+      <ion-col size="3">
+        <b>Adresse</b>
+      </ion-col>
+      <ion-col>
+        {{address}}
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!-- <ion-button (click)="getAddressFromCoords()" color="success" expand="full">Get Location</ion-button> -->
+  <!-- <ion-button (click)="remove()" color="success" expand="full">Remove</ion-button>
+  <ion-button slot="end" (click)="addMarker()" shape="round" color="dark">
+    <ion-icon slot="start" name="locate"></ion-icon>
+    add
+  </ion-button> -->
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" style="margin-bottom: 12%;">
+    <ion-fab-button size="small" (click)="addMarker()">
+      <img src="./../../assets/icon/Renault-Clio-grandtour.png" align="center" style="display: block; width: 80%; height: 80%; margin-left: auto; margin-right: auto;">
+    </ion-fab-button>
+    <ion-fab-button size="small" (click)="loadMap()">
+      <ion-icon name="locate"></ion-icon>
+    </ion-fab-button>
+    <!-- <ion-fab-list side="top">
+      <ion-fab-button (click)="addMarker()"><ion-icon name="car"></ion-icon></ion-fab-button>
+      <ion-fab-button><ion-icon (click)="loadMap()" name="locate"></ion-icon></ion-fab-button>
+    </ion-fab-list> -->
+  </ion-fab>
+</ion-content>

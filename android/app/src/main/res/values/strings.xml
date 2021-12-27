@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">BiHelfer</string>
+    <string name="title_activity_main">BiHelfer</string>
+    <string name="package_name">com.bihelfer.app</string>
+    <string name="custom_url_scheme">com.bihelfer.app</string>
+</resources>

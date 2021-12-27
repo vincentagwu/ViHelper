@@ -1,0 +1,76 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar >
+    <!-- <ion-title align="center">
+      Arbeitsstunden
+    </ion-title> -->
+    <ion-buttons slot="start">  
+      <ion-menu-button color="secondary" ></ion-menu-button>   
+    </ion-buttons>  
+    <ion-buttons slot="end">
+      <ion-button class="bordered"  (click)="today()">
+				<ion-icon color="secondary"  name="today-outline" slot="icon-only"></ion-icon>
+			</ion-button>
+      <ion-button class="bordered" (click)="loadEvents()">
+        <ion-icon color="secondary" name="reload-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+      <!-- <ion-button class="bordered"   (click)="logPauseTime()">
+				<ion-icon color="secondary"  name="pause-circle-outline" slot="icon-only"></ion-icon>
+			</ion-button> -->
+      <!-- <ion-button class="bordered" (click)="openCalModal()">
+        <ion-icon color="secondary" name="add" slot="icon-only"></ion-icon>
+      </ion-button> -->
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+ 
+<ion-content [fullscreen]="true">
+  <h1 align="center">
+    Arbeitsstunden
+  </h1>
+  <!-- <ion-button fill="clear" (click)="go()">
+    <ion-icon color="secondary" name="american-football" slot="icon-only"></ion-icon>
+  </ion-button> -->
+  <div class="slides ion-margin-bottom">
+    <ion-row class="animate__animated animate__slideInUp animate__fast">
+      
+      <!-- Move back one screen of the slides -->
+      <ion-col size="3" align="left">
+        <ion-button fill="clear" (click)="back()">
+          <ion-icon color="secondary" name="arrow-back" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-col>
+
+      <ion-col size="6" text-center align="center" >
+        <ion-label position="floating" class="viewTitle">{{ viewTitle }}</ion-label>
+      </ion-col>
+      
+  
+      <!-- Move forward one screen of the slides -->
+      <ion-col size="3" align="right" >
+        <ion-button fill="clear" (click)="next()">
+          <ion-icon color="secondary" name="arrow-forward" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  <calendar 
+      [eventSource]="eventSource"
+      [calendarMode]="calendar.mode"
+      [currentDate]="calendar.currentDate"
+      [showEventDetail] = "true"
+      (onCurrentDateChanged)="onCurrentDateChanged($event)"
+      (onEventSelected)="onEventSelected($event)"
+      (onTitleChanged)="onViewTitleChanged($event)"
+      (onTimeSelected)="onTimeSelected($event)" 
+      startHour="6"
+      endHour="20"
+      step="30"
+      startingDayWeek="1">
+    </calendar>
+  </div>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="openCalModal()">
+      <ion-icon  name="add" ></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

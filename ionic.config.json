@@ -1,0 +1,7 @@
+{
+  "name": "vihelper-app",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,28 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar >
+    <ion-buttons slot="start">
+      <ion-button (click)="close()">
+        <ion-icon name="close" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title align="center"><b>Pausenzeit</b></ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="save()">
+        <ion-icon name="checkmark" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+ 
+<ion-content>
+  <ion-item style="margin-top: 50%;" align="center">
+    <!-- <ion-label>{{time}}</ion-label> -->
+    <ion-label position="floating">Pausenzeit eingeben</ion-label>
+    <!-- <ion-datetime display-format="mm:ss" [(ngModel)]="time" ></ion-datetime> -->
+    <ion-datetime 
+    presentation="time" locale="de-DE" #time displayFormat="HH:mm" (ionChange)="updateTime(time.value)">
+     <div slot="title">My Custom Title</div>
+  </ion-datetime>
+  </ion-item>
+</ion-content>

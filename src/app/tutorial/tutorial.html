@@ -1,0 +1,227 @@
+<ion-header class="ion-no-border" style="background-color:#004AAD;" >
+  <ion-toolbar style="background-color:#004AAD;" >
+    <ion-buttons slot="end">
+      <ion-button color='secondary' (click)="startApp()" [hidden]="!showSkip">Überspringen</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true"  >
+  <swiper [config]="config" style="background:#004AAD;" (swiper)="setSwiperInstance($event)" (slideChangeTransitionStart)="onSlideChangeStart()" [pagination]="{ clickable: true }">
+    <ng-template swiperSlide  >
+      <div  >
+        <div class="content">
+          <div >
+            <div >
+              <div >
+                  <div>
+                    <img src="./../../assets/img/Final.jpg" align="center" style="display: block; width: 60%; height: 60%; margin-left: auto; margin-right: auto;">
+                  </div>
+                  <h1 id="page-heading1" style="color:#f1f5f8;text-align:center;">Hallo Bi</h1>
+                  <div class="spacer" style="width: 300px; height: 20px;"></div>
+                  <div id="page-markdown1" style="text-align:center;" >
+                    <p style="color:#f1f5f8;">Beim diejährigen Weihnachtsgeschenk, ist es mir bis zuletzt nicht leicht gefallen.</p>
+                    <p style="color:#f1f5f8;">Ich selbst war schon als Kind, der Freund davon etwas Selbstgemachtes zu verschenken.</p>
+                    <p style="color:#f1f5f8;">Da ich aus dem Alter draußen bin, wo man Sachen bastelt und auch nicht sonderlich künstlerisch begabt bin, habe ich meine Fähigkeiten genutzt und dir etwas programmiert.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </ng-template>
+
+    <ng-template swiperSlide>
+      <div >
+        <div class="content">
+            <div >
+              <div >
+                <div >
+                  <div>
+                    <img src="./../../assets/icon/notes.png" style="display: block; width: 60%; height: auto; margin-left: auto; margin-right: auto;">
+                  </div>
+                  <h3 id="page-heading2" style="color:#f1f5f8;text-align:center;">Schluss mit der Rechnerei und Notizenwirtschaft</h3>
+                  <div id="page-markdown1" style="text-align:center;" class="show-list-numbers-and-dots">
+                    <p style="color:#f1f5f8;">Da du deine Arbeitsstunden nicht irgendwo digital geordnet abgeben kannst, bist du gezwungen deine Stunde dir sie irgendwo zu notieren.</p>
+                    <p style="color:#f1f5f8;">Derzeit hast du das über die Notizen App gemacht, wo du aber jedes Mal die Nettostunden berechnen musstest.</p>
+                    <p style="color:#f1f5f8;">Das hat jetzt ein Ende, da du jetzt eine eigene App hast, in der du deine Arbeitszeit eingeben kannst und sie von selbst berechnet wird.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </ng-template>
+
+    <ng-template swiperSlide>
+      <div >
+        <div class="content">
+            <div >
+              <div >
+                <div >
+                  <div>
+                    <img src="./../../assets/icon/Renault-Clio-grandtour.png" align="center" style="display: block; width: 60%; height: 60%; margin-left: auto; margin-right: auto;">
+                  </div>
+                  <h3 id="page-heading2" style="color:#f1f5f8;text-align:center;">Das Thema Auto</h3><h4>😅😂</h4>
+                  <div id="page-markdown1" style="text-align:center;" class="show-list-numbers-and-dots">
+                    <p style="color:#f1f5f8;">Fast wie das tägliche Wasser lassen begeleitet es dich, aber auch mich. Die Frage: <strong>"Wo steht mein Auto heute?"</strong> </p>
+                    <p style="color:#f1f5f8;">Das soll nun jetzt auch ein Ende haben, da du jetzt eine eigene App hast, die auch die Position deines Autos speichern kann. </p>
+                    <p style="color:#f1f5f8;">Somit kannst du ganz bequem rausgehen und zu deinem Auto laufen, ohne dich immer neu orientieren zu müssen</p>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </ng-template>
+
+    <ng-template swiperSlide>
+      <div >
+        <div class="content">
+            <div >
+              <div >
+                <div >
+                  <div>
+                    <img src="./../../assets/icon/calendar.png" align="center" style="display: block; width: 60%; height: 60%; margin-left: auto; margin-right: auto;">
+                  </div>
+                  <h3 id="page-heading2" style="color:#f1f5f8;text-align:center;">Hat das Kalendersuchen ein Ende?</h3>
+                  <div id="page-markdown1" style="text-align:center;" class="show-list-numbers-and-dots">
+                    <p style="color:#f1f5f8;">Ich hoffe mit diesem Kalender hast du mal mehr überblick über die Termine.</p>
+                    <p style="color:#f1f5f8;">Sollte etwas anzupassen sein, kontaktiere einfach deinen persönlichen Software-Entwickler deiner eigenen App!😉😎</p>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </ng-template>
+
+    <ng-template swiperSlide>
+      <div >
+        <div class="content">
+            <div >
+              <div >
+                <div >
+                  <div>
+                    <img src="./../../assets/img/finish.jpg" align="center" style="display: block; width: 60%; height: 60%; margin-left: auto; margin-right: auto;">
+                  </div>
+                  <h3 id="page-heading2" style="color:#f1f5f8;text-align:center;">Viel Spaß mit deiner eigenen App</h3>
+                  <div id="page-markdown4" style="text-align:center;" >
+                    <p style="color:#f1f5f8;">Ich hoffe die App taugt dir was und du benutzt Sie auch fleißig!😊</p>
+                    <p style="color:#f1f5f8;">Frohe Weinachten 2021</p>
+                    <p style="color:#f1f5f8;">In Liebe dein Vincent😊❤️</p>
+                    <br>
+                    <p style="color:#f1f5f8;">PS: Denk dran, damit lässt sich die Position des Autos besser merken!😜</p>
+                  </div>
+                  <div align="center" style="margin-bottom: auto; margin-top: auto;">
+                    <ion-button fill="clear" color="secondary" (click)="startApp()">App öffnen<ion-icon name="chevron-forward-outline"></ion-icon></ion-button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </ng-template>
+  </swiper>
+</ion-content>
+
+<!-- <ion-app>
+  <ion-content >
+    <ion-slides pager="true" [options]="slideOpts" disable-side-menu-drag="" slider="slider1"  id="page-slider1" style="width:100%;height:100%;" (slideChangeTransitionStart)="onSlideChangeStart()">
+      <ion-slide id="page-slide24" style="background: #000E44;" >
+        <div class="page-centered-element">
+          <div class="content">
+              <div style="display:table;width:100%;height:100%;">
+                <div style="display:table-row;">
+                  <div style="display:table-cell;vertical-align:middle;">
+                    <div>
+                      <img src="./../../assets/img/Final.jpg" align="center" style="display: block; width: 60%; height: 60%; margin-left: auto; margin-right: auto;">
+                    </div>
+                    <h1 id="page-heading1" style="color:#f1f5f8;text-align:center;">Hallo Bi</h1>
+                    <div class="spacer" style="width: 300px; height: 20px;"></div>
+                    <div id="page-markdown1" style="text-align:center;" >
+                      <p style="color:#f1f5f8;">Beim diejährigen Weihnachtgeschenk, ist es mir bis zuletzt nicht leicht gefallen.</p>
+                      <p style="color:#f1f5f8;">Ich selbst war schon als Kind, der Freund davon etwas Selbstgemachtes zu verschenken.</p>
+                      <p style="color:#f1f5f8;">Da ich aus dem Alter draußen bin, wo man Sachen bastelt und auch nicht sonderlich künstlerich begabt bin, habe ich meine Fähigkeiten genutzt und dir etwas programmiert.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </ion-slide>
+      <ion-slide id="page-slide25" style="background-color:#004AAD;" >
+        <div class="page-centered-element">
+          <div class="content">
+            <div style="display:table;width:100%;height:100%;">
+              <div style="display:table-row;">
+                <div style="display:table-cell;vertical-align:middle;">
+                  <div>
+                    <img src="./../../assets/icon/notes.png" style="display: block; width: 60%; height: auto; margin-left: auto; margin-right: auto;">
+                  </div>
+                  <h3 id="page-heading2" style="color:#f1f5f8;text-align:center;">Schluss mit der Rechnerei und Notizenwirtschaft</h3>
+                  <div id="page-markdown1" style="text-align:center;" class="show-list-numbers-and-dots">
+                    <p style="color:#f1f5f8;">Da du deine Arbeitsstunden nicht irgendwo digital geordnet abgeben kannst, bist du gezwungen deine Stunde dir sie irgendwo zu notieren.</p>
+                    <p style="color:#f1f5f8;">Derzeit hast du das über die Notizen App gemacht, wo du aber jedes Mal die Nettostunden berechnen musstest.</p>
+                    <p style="color:#f1f5f8;">Das hat jetzt ein Ende, da du jetzt eine eigene App hast, in der du deine Arbeitszeit eingeben kannst und sie von selbst berechnet wird.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ion-slide>
+      <ion-slide id="page-slide213" style="background-color:#FEA82F;" >
+        <div class="page-centered-element">
+          <div class="content">
+            <div style="display:table;width:100%;height:100%;">
+              <div style="display:table-row;">
+                <div style="display:table-cell;vertical-align:middle;">
+                  <div>
+                    <img src="./../../assets/icon/Renault-Clio-grandtour.png" align="center" style="display: block; width: 60%; height: 60%; margin-left: auto; margin-right: auto;">
+                  </div>
+                  <h3 id="page-heading2" style="color:#f1f5f8;text-align:center;">Das Thema Auto</h3><h4>😅😂</h4>
+                  <div id="page-markdown1" style="text-align:center;" class="show-list-numbers-and-dots">
+                    <p style="color:#f1f5f8;">Fast wie das tägliche Wasser lassen begeleitet es dich, aber auch mich. Die Frage: <strong>"Wo steht mein Auto heute?"</strong> </p>
+                    <p style="color:#f1f5f8;">Das soll nun jetzt auch ein Ende haben, da du jetzt eine eigene App hast, die auch die Position deines Autos speichern kann. </p>
+                    <p style="color:#f1f5f8;">Somit kannst du ganz bequem rausgehen und zu deinem Auto laufen, ohne dich immer neu orientieren zu müssen</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ion-slide>
+      <ion-slide id="page-slide214" style="background-color:#423E3B;">
+        <div class="page-centered-element">
+          <div class="content">
+            <div style="display:table;width:100%;height:100%;">
+              <div style="display:table-row;">
+                <div style="display:table-cell;vertical-align:middle;">
+                  <div>
+                    <img src="./../../assets/img/ica-slidebox-img-4.png" align="center" style="display: block; width: 20%; height: 20%; margin-left: auto; margin-right: auto;">
+                  </div>
+                  <h3 id="page-heading2" style="color:#f1f5f8;text-align:center;">Erfolge dokumentieren</h3>
+                  <div id="page-markdown4" style="text-align:center;" >
+                    <p style="color:#f1f5f8;">Ebenfalls wird Ihnen die Möglichkeit gegeben Ihr
+                      <strong>Gewicht</strong> bzw.
+                      <strong>Körpermaße</strong> einzusehen und zu dokumentieren. So sehen Sie nach und nach Ihre
+                      <strong>Erfloge</strong> und hilft zudem noch den Trainieren das
+                      <strong>Bestmöglichte</strong> aus Ihnen zu bekommen.</p>
+                  </div>
+                  <div align="center" style="margin-bottom: auto; margin-top: auto;">
+                    <ion-button color="secondary" (click)="startApp()">Starten</ion-button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ion-slide>
+    </ion-slides>
+    
+  </ion-content>
+</ion-app> -->
+

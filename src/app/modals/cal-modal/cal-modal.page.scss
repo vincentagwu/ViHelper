@@ -1,0 +1,101 @@
+/**
+* Theme for Calendar
+*/
+
+.viewTitle {
+    font-weight: 1000;
+    color: rgb(0, 0, 0);
+    text-align: center;
+  }
+  
+  .my-custom-class {
+  --background: #948b8b;
+  color: #000000;
+  }
+  
+  .custom-card {
+  --background: #2c3e50;
+  color: #000000;
+  margin-top: -50px;
+  max-height: 35vh;
+  }
+  
+  :host ::ng-deep {
+  .monthview-container {
+      height: auto !important;
+      color: #000000;
+  }
+  
+  }
+  
+  .indicator-container {
+  padding-left: 0.5rem;
+  padding-bottom: 0.4rem;
+  color: #000000;
+  }
+  
+  
+  .event-indicator {
+  background: dodgerblue;
+  width: 5px;
+  height: 5px;
+  border-radius: 5px;
+  display: table-cell;
+  }
+  
+  :host ::ng-deep {
+  .monthview-primary-with-event {
+    background-color: dodgerblue !important;
+  }
+  
+  .monthview-container{
+    background-color:  transparent;
+    color: #000000;
+  }
+  
+  .monthview-selected {
+    background-color: var(--ion-color-success) !important;
+    color: #000000;
+  }
+  }
+  
+  td.monthview-current {
+    color: #00000000;
+  
+    .calendar-day {
+      background-color: transparent;
+    }
+  }
+  
+  
+  .my-cal {
+    background-color: red;
+    background: red ;
+  }
+  
+  .monthview-primary-with-event, .calendar-event-inner{
+    background-color: #1a92d0;
+    background: #1a92d0;
+  }
+  .weekview-allday-content-table .calendar-event-inner {
+  background-color: red ;
+  background: red ;
+  }
+  .calendar-event-inner{
+  color:#000000;
+  }
+  
+  h2 {
+    padding-bottom: 8px;
+    color: #000000;
+  }
+
+  #date-input-popover {
+    --offset-y: -var(--ion-safe-area-bottom);
+  
+    --max-width: 90%;
+    --width: 336px;
+  }
+  
+
+  

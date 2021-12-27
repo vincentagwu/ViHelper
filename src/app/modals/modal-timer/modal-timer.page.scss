@@ -1,0 +1,45 @@
+ion-toolbar{
+  background: #f1f5f8;
+}
+
+ion-title{
+    color: black; 
+}
+
+.itemButton{
+    background-color: #8d8d8d1e;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    margin:10px auto;
+    width: 30%;
+    height: 50%;
+
+}
+
+ion-item{
+  animation: popIn 0.2s calc(var(--animation-order)*70ms) both ease-in;
+}
+
+@keyframes popIn{
+  0%{
+    opacity: 0;
+    transform: scale(0.6) translateY(-8px);
+  }
+
+  100%{
+    opacity: 1;
+    transform: none;
+  }
+}
+  
+
+
+
+ion-item{
+  background: none;
+  opacity:1;
+  ion-datetime{
+    color:black;
+  }
+}

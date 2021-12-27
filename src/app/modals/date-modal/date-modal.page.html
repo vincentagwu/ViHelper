@@ -1,0 +1,29 @@
+<!-- <ion-toolbar >
+  <ion-buttons slot="start">
+    <ion-button (click)="close()">
+      <ion-icon name="close" slot="icon-only" color="danger"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+  <ion-title align="center"> Schichtdaten eingeben</ion-title>
+  <ion-buttons slot="end">
+    <ion-button (click)="save()">
+      <ion-icon name="checkmark" slot="icon-only" color="success"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
+  -->
+
+<ion-content>
+  <ion-datetime #dateTime [value]="dateValue" (ionChange)="updateTime(dateTime.value)" 
+  size="cover" >
+  </ion-datetime>
+  <ion-item class="ion-no-border">
+    <ion-button class="ion-no-border" (click)="close()" slot="start" fill="clear">
+      <ion-icon name="close" slot="icon-only" color="danger"></ion-icon>
+    </ion-button>
+    
+    <ion-button class="ion-no-border" (click)="save()" slot="end" fill="clear">
+      <ion-icon name="checkmark" slot="icon-only" color="success"></ion-icon>
+    </ion-button>
+  </ion-item>
+</ion-content>
