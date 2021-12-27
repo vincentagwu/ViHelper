@@ -1,5 +1,5 @@
 {
-  "name": "Tabs Starter",
+  "name": "ViHelper",
   "baseref": "main",
   "tarignore": [
     "node_modules",
