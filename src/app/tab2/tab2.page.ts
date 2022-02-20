@@ -239,7 +239,7 @@ export class Tab2Page {
   async presentActionSheet() {
     
     let origin =  this.currentLocation.lat + ',' + this.currentLocation.lng;
-    let destination =  this.latitude + ',' + this.longitude;
+    let destination =  this.markerData.lat + ',' + this.markerData.lng;
     console.log("origin: " + origin);
     console.log("destination: " + destination);
     //Leaving this empty for now, we will get back to this in the next step
