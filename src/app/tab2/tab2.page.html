@@ -77,14 +77,29 @@
     add
   </ion-button> -->
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed" style="margin-bottom: 12%;">
-    <ion-fab-button size="small" (click)="addMarker()">
-      <!-- <img src="./../../assets/icon/Renault-Clio-grandtour.png" align="center" style="display: block; width: 80%; height: 80%; margin-left: auto; margin-right: auto;"> -->
-      <ion-icon name="car"></ion-icon>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button  style="margin-bottom: 80%;">
+      <ion-icon name="open"></ion-icon>
     </ion-fab-button>
-    <ion-fab-button size="small" (click)="loadMap()">
-      <ion-icon name="locate"></ion-icon>
-    </ion-fab-button>
+    <ion-fab-list side="top" >
+      <ion-fab-button size="small" (click)="presentActionSheet()" style="margin-bottom: 80%;">
+        <!-- <img src="./../../assets/icon/Renault-Clio-grandtour.png" align="center" style="display: block; width: 80%; height: 80%; margin-left: auto; margin-right: auto;"> -->
+        <ion-icon name="map"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+    <ion-fab-list side="start">
+      <ion-fab-button size="small" (click)="addMarker()" style="margin-bottom: 80%;">
+        <!-- <img src="./../../assets/icon/Renault-Clio-grandtour.png" align="center" style="display: block; width: 80%; height: 80%; margin-left: auto; margin-right: auto;"> -->
+        <ion-icon name="car"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+    <ion-fab-list side="bottom">
+      <ion-fab-button size="small" (click)="loadMap()" style="margin-bottom: 20%;">
+        <ion-icon name="locate"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+    
+    
     <!-- <ion-fab-list side="top">
       <ion-fab-button (click)="addMarker()"><ion-icon name="car"></ion-icon></ion-fab-button>
       <ion-fab-button><ion-icon (click)="loadMap()" name="locate"></ion-icon></ion-fab-button>

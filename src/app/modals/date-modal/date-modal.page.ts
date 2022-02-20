@@ -26,7 +26,7 @@ export class DateModalPage implements OnInit {
     console.log("dateValue: " + this.dateValue);
     var date = format(new Date(this.dateValue), 'yyyy-MM-dd') + 'T' + (new Date(new Date().getTime())).toLocaleTimeString().toString() + '.000Z';
     this.dateValue = date;
-    this.time = date;
+    //this.time = date;
   }
 
   close() {

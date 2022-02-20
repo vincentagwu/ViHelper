@@ -24,7 +24,7 @@ import { CalModalPageModule} from './modals/cal-modal/cal-modal.module';
   imports: [ReactiveFormsModule, FormsModule, CommonModule, SwiperModule, BrowserModule, IonicModule.forRoot(), AppRoutingModule, NgCalendarModule,  ServiceWorkerModule.register('ngsw-worker.js', {
     enabled: environment.production
   }),ModalTimerPageModule, CalModalPageModule],
-  providers: [SettingsProvider, Storage,Geolocation, NativeAudio,NativeGeocoder, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [SettingsProvider, Storage,Geolocation,NativeAudio,NativeGeocoder, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

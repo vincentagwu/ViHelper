@@ -35,12 +35,6 @@ export class CalModalPage implements OnInit {
   showStartTimePicker = false;
   showEndTimePicker = false;
 
-  location = 'madison';
-
-  selectOptions = {
-    header: 'Select a Location'
-  };
-
   event = {
     title: '',
     desc: '',
@@ -54,8 +48,8 @@ export class CalModalPage implements OnInit {
   modalReady = false;
  
   constructor(private modalCtrl: ModalController, private alertCtrl: AlertController,  public router: Router,) {
-    this.dateStartValue = this.startTime;
-    this.dateEndValue = this.endTime;
+    this.showStartTimePicker = false;
+    this.showEndTimePicker = false;
    }
  
   ngOnInit() {
@@ -64,9 +58,20 @@ export class CalModalPage implements OnInit {
     this.showStartTimePicker = false;
     this.showEndTimePicker = false;
     this.pauseTime = JSON.parse(localStorage.getItem('pauseTime'));
+    // this.dateStartValue = this.startTime;
+    // this.dateEndValue = this.endTime;
     setTimeout(() => {
       this.modalReady = true;      
     }, 0);
+  }
+
+  ionDidLeave(){
+    this.startTime = '';
+    this.endTime = '';
+  }
+
+  ionWillEnter (){
+    this.setToday();
   }
 
   setToday(){
@@ -168,8 +173,8 @@ export class CalModalPage implements OnInit {
       cssClass: 'date-modal',
       swipeToClose: true,
       componentProps: {
-        dateValue: this.dateStartValue,
-        time: this.dateStartValue
+        dateValue: this.dateEndValue ,
+        time: this.dateEndValue
       },
       presentingElement: await this.modalCtrl.getTop()
     });

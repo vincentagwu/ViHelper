@@ -3,7 +3,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder, NativeGeocoderOptions, NativeGeocoderResult } from '@ionic-native/native-geocoder/ngx';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { AudioService } from '../services/audio.service';
-
+import {ActionSheetController} from '@ionic/angular';
 declare var google;
 
 @Component({
@@ -39,7 +39,8 @@ export class Tab2Page {
     private geolocation: Geolocation,
     private nativeGeocoder: NativeGeocoder,
     private audio: AudioService,
-    private fb: FormBuilder) {
+    private fb: FormBuilder,
+    public actionSheetController:ActionSheetController) {
 
       this.createDirectionForm();
   }
@@ -233,5 +234,52 @@ export class Tab2Page {
         window.alert('Directions request failed due to ' + status);
       }
     });
+  }
+
+  async presentActionSheet() {
+    
+    let origin =  this.currentLocation.lat + ',' + this.currentLocation.lng;
+    let destination =  this.latitude + ',' + this.longitude;
+    console.log("origin: " + origin);
+    console.log("destination: " + destination);
+    //Leaving this empty for now, we will get back to this in the next step
+    let actionLinks=[];
+
+    actionLinks.push({
+      text: 'Navigation in Google Maps öffnen',
+      icon: 'navigate',
+      handler: () => {
+        window.open("https://www.google.com/maps/dir/?api=1&origin=" + origin + "&destination=" + destination + "&travelmode=walking")
+      }
+    })
+
+   
+    //  //2B. Add Waze App
+    // actionLinks.push({
+    //   text: 'Waze App',
+    //   icon: 'navigate',
+    //   handler: () => {
+    //     window.open("https://waze.com/ul?ll="+destination+"&travelmode=walking&navigate=yes&z=10");
+    //   }
+    // });
+
+   //2C. Add a cancel button, you know, just to close down the action sheet controller if the user can't make up his/her mind
+    actionLinks.push({
+      text: 'Schließen',
+      icon: 'close',
+      role: 'cancel',
+      handler: () => {
+        // console.log('Cancel clicked');
+      }
+    })
+    
+
+    
+
+    const actionSheet = await this.actionSheetController.create({
+     header: 'Navigation',
+     buttons: actionLinks
+    });
+    await actionSheet.present();
   }
 }
