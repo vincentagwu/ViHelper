@@ -7,6 +7,7 @@ import { ModalTimerPage } from './../modals/modal-timer/modal-timer.page';
 import { formatDate } from '@angular/common';
 import { MenuController } from '@ionic/angular';
 import { timer, Observable } from 'rxjs';
+import {CalendarMode} from 'ionic2-calendar/calendar'
 import {format, parseISO,} from 'date-fns';
 import * as moment from "moment"; 
 
@@ -28,7 +29,7 @@ export class Tab1Page {
   selectedDate;
 
   calendar = {
-    mode: 'month',
+    mode: 'month' as CalendarMode,
     currentDate: new Date()
   };
 
@@ -447,5 +448,6 @@ export class Tab1Page {
     });
     toast.present();
   }
+  
 
 }
