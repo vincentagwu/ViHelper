@@ -237,7 +237,8 @@ export class Tab2Page {
   }
 
   async presentActionSheet() {
-    
+    this.markerData = JSON.parse(localStorage.getItem('marker'));
+    this.getAddressFromCoords(this.markerData.lat, this.markerData.lng);
     let origin =  this.currentLocation.lat + ',' + this.currentLocation.lng;
     let destination =  this.markerData.lat + ',' + this.markerData.lng;
     console.log("origin: " + origin);
