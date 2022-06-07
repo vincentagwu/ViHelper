@@ -31,26 +31,26 @@ _Note: See [How to Prevent Permissions Errors](https://docs.npmjs.com/getting-st
 
 | Material Design  | iOS  |
 | -----------------| -----|
-| ![Android Menu](/resources/github/menu_material.png) | ![iOS Menu](/resources/github/menu_ios.png) |
+| ![Android Menu](/resources/github/menu_material.PNG) | ![iOS Menu](/resources/github/menu_ios.PNG) |
 
 
 ### [Shift hours Page](https://github.com/vincentagwu/ViHelper/blob/master/src/app/tab1/tab1.page.html)
 
 | Material Design  | iOS  |
 | -----------------| -----|
-| ![Android Schedule](/resources/github/hourshift_material.png) | ![iOS Schedule](/resources/github/hourshift_ios.png) |
+| ![Android Schedule](/resources/github/hourshift_material.PNG) | ![iOS Schedule](/resources/github/hourshift_ios.PNG) |
 
 ### [Car finding Page](https://github.com/vincentagwu/ViHelper/blob/master/src/app/tab2/tab2.page.html)
 
 | Material Design  | iOS  |
 | -----------------| -----|
-| ![Android Speakers](/resources/github/car_material.png) | ![iOS Speakers](/resources/github/car_ios.png) |
+| ![Android Speakers](/resources/github/car_material.PNG) | ![iOS Speakers](/resources/github/car_ios.PNG) |
 
 ### [Calendar Page](https://github.com/vincentagwu/ViHelper/blob/master/src/app/tab3/tab3.page.html)
 
 | Material Design  | iOS  |
 | -----------------| -----|
-| ![Android Speaker Detail](/resources/github/calendar_material.png) | ![iOS Speaker Detail](/resources/github/calendar_ios.png) |
+| ![Android Speaker Detail](/resources/github/calendar_material.PNG) | ![iOS Speaker Detail](/resources/github/calendar_ios.PNG) |
 
 ## Deploying
 
