@@ -2,8 +2,6 @@
 
 This application was an christmas gift and also an helper in certain situations created with the Ionic Framework and Angular.
 
-**There is not an actual Ionic Conference at this time.** This project is just to show off Ionic components in a real-world application. Please go through the steps in [CONTRIBUTING](https://github.com/ionic-team/ionic-conference-app/blob/master/.github/CONTRIBUTING.md) before submitting an issue.
-
 ## Table of Contents
 - [Getting Started](#getting-started)
 - [Contributing](#contributing)
