@@ -1,1 +1,6 @@
-[]
+[
+	{
+		"pkg": "@capacitor/google-maps",
+		"classpath": "com.capacitorjs.plugins.googlemaps.CapacitorGoogleMapsPlugin"
+	}
+]
