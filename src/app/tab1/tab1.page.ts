@@ -28,6 +28,11 @@ export class Tab1Page {
   did_tutorial ;
   selectedDate;
 
+  selectedDateMode ="month";
+  dateSnippet;
+
+  dateValue;
+
   calendar = {
     mode: 'month' as CalendarMode,
     currentDate: new Date()
@@ -48,6 +53,7 @@ export class Tab1Page {
   ngOnInit() {
     this.startApp(); 
     this.loadEvents();
+    this.loadEventsMode(this.dateSnippet);
     //this.pauseTime = JSON.parse(localStorage.getItem('pauseTime'));
     this.data = JSON.parse(localStorage.getItem('shifts'));
     // if(data == null)
@@ -55,6 +61,27 @@ export class Tab1Page {
     this.ios = this.config.get('mode') === 'ios';
 
     console.log(this.pauseTime);
+
+    this.dateValue.setHours(new Date().getHours()-1);
+    console.log("dateValue: " + this.dateValue);
+    var date = format(new Date(this.dateValue), 'yyyy-MM-dd') + 'T' + (new Date(new Date().getTime())).toLocaleTimeString().toString() + '.000Z';
+    this.dateValue = date;
+    if(this.selectedDateMode === "month"){
+      this.dateSnippet = this.dateValue.substring(4, 8);
+      this.loadEventsMode(this.dateSnippet);
+    }
+  }
+
+  updateTime(value) {
+    this.dateValue = value;
+    console.log(this.dateValue);
+
+    if(this.selectedDateMode === "month"){
+      this.dateSnippet = this.dateValue.substring(4, 8);
+      this.loadEventsMode(this.dateSnippet);
+    }
+    //this.time = format(parseISO(value), 'HH:mm, MMM d, yyyy');
+    //this.startTime = value;
   }
 
   startApp() {
@@ -75,6 +102,37 @@ export class Tab1Page {
       }
   }
 
+  async loadEventsMode(mode){
+    this.calendar.currentDate = new Date();
+    this.data = JSON.parse(localStorage.getItem('shifts'));
+    this.tempEvents =  this.data ;
+    var events = [];
+    this.eventSource =[];
+      
+    console.log(mode);
+    await timer(300).subscribe(x => { 
+      for (let event_ of this.tempEvents ) {
+        if(event_.startTime.toString().includes(mode)){
+          events.push({
+            title: event_.title,
+            startTime : format(parseISO(format(new Date(event_.startTime), 'yyyy-MM-dd')), new Date(event_.startTime).getHours() + ':'+ (new Date(event_.startTime).getMinutes().toLocaleString().length > 1 ? new Date(event_.startTime).getMinutes() : '0' + new Date(event_.startTime).getMinutes() )+ ', MMM d, yyyy'),
+            endTime : format(parseISO(format(new Date(event_.endTime), 'yyyy-MM-dd')), new Date(event_.endTime).getHours() + ':'+ (new Date(event_.endTime).getMinutes().toLocaleString().length > 1 ? new Date(event_.endTime).getMinutes() : '0' + new Date(event_.endTime).getMinutes() )+ ', MMM d, yyyy'),
+            allDay: false,
+          });
+        }
+      }
+    });
+
+      await timer(300).subscribe(x => { 
+       this.data = JSON.parse(localStorage.getItem('shifts'));
+       
+        this.eventSource = events;
+        
+        console.log(this.eventSource);
+      });
+
+  }
+
   async loadEvents(){
     this.calendar.currentDate = new Date();
     this.data = JSON.parse(localStorage.getItem('shifts'));
@@ -86,8 +144,8 @@ export class Tab1Page {
       for (let event_ of this.tempEvents ) {
           events.push({
             title: event_.title,
-            startTime : new Date(event_.startTime),
-            endTime : new Date(event_.endTime),
+            startTime : format(parseISO(format(new Date(event_.startTime), 'yyyy-MM-dd')), new Date(event_.startTime).getHours() + ':'+ (new Date(event_.startTime).getMinutes().toLocaleString().length > 1 ? new Date(event_.startTime).getMinutes() : '0' + new Date(event_.startTime).getMinutes() )+ ', MMM d, yyyy'),
+            endTime : format(parseISO(format(new Date(event_.endTime), 'yyyy-MM-dd')), new Date(event_.endTime).getHours() + ':'+ (new Date(event_.endTime).getMinutes().toLocaleString().length > 1 ? new Date(event_.endTime).getMinutes() : '0' + new Date(event_.endTime).getMinutes() )+ ', MMM d, yyyy'),
             allDay: false,
           });
       }
@@ -95,7 +153,9 @@ export class Tab1Page {
 
       await timer(300).subscribe(x => { 
        this.data = JSON.parse(localStorage.getItem('shifts'));
+       
         this.eventSource = events;
+        
         console.log(this.eventSource);
       });
 
