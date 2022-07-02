@@ -373,7 +373,7 @@ export class Tab1Page {
     //let shiftTimeDecimalNetto = (((event.endTime - event.startTime)/3.6e+6) ).toFixed(2);
     let shiftTimeDecimalNetto = ((shiftTimeNettoHour + shiftTimeNettoMinutes/3.6e+6)).toFixed(2);
     let shiftTimeDecimalBrutto= (((shiftTimeNettoHour + shiftTimeNettoMinutes/3.6e+6)) - this.pauseTimeDecimal ).toFixed(2);
-    let date = formatDate(new Date(), 'medium', this.locale);
+    let date = formatDate(new Date(event.startTime), 'medium', this.locale);
     console.log(this.pauseTimeDecimal);
     //this.presentAlertCalendar('Schicht am '+ date.substring(0,12), event.desc, 
     //'Schicht<br><br>Von: ' + start + '<br><br>Bis: ' + end + '<br><br>Dezimalansicht:<br><br>Arbeitszeit (netto): ' + shiftTimeDecimalNetto+ '<br>Pause: ' + pauseTimeDecimal.toFixed(2)  +'<br>Arbeitszeit (brutto): ' + shiftTimeDecimalBrutto
