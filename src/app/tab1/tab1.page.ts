@@ -32,6 +32,7 @@ export class Tab1Page {
   dateSnippet;
 
   dateValue;
+  pauseTimeDecimal;
 
   calendar = {
     mode: 'month' as CalendarMode,
@@ -115,8 +116,8 @@ export class Tab1Page {
         if(event_.startTime.toString().includes(mode)){
           events.push({
             title: event_.title,
-            startTime : format(parseISO(format(new Date(event_.startTime), 'yyyy-MM-dd')), new Date(event_.startTime).getHours() + ':'+ (new Date(event_.startTime).getMinutes().toLocaleString().length > 1 ? new Date(event_.startTime).getMinutes() : '0' + new Date(event_.startTime).getMinutes() )+ ', MMM d, yyyy'),
-            endTime : format(parseISO(format(new Date(event_.endTime), 'yyyy-MM-dd')), new Date(event_.endTime).getHours() + ':'+ (new Date(event_.endTime).getMinutes().toLocaleString().length > 1 ? new Date(event_.endTime).getMinutes() : '0' + new Date(event_.endTime).getMinutes() )+ ', MMM d, yyyy'),
+            startTime : event_.startTime,
+            endTime : event_.endTime,
             allDay: false,
           });
         }
@@ -144,8 +145,8 @@ export class Tab1Page {
       for (let event_ of this.tempEvents ) {
           events.push({
             title: event_.title,
-            startTime : format(parseISO(format(new Date(event_.startTime), 'yyyy-MM-dd')), new Date(event_.startTime).getHours() + ':'+ (new Date(event_.startTime).getMinutes().toLocaleString().length > 1 ? new Date(event_.startTime).getMinutes() : '0' + new Date(event_.startTime).getMinutes() )+ ', MMM d, yyyy'),
-            endTime : format(parseISO(format(new Date(event_.endTime), 'yyyy-MM-dd')), new Date(event_.endTime).getHours() + ':'+ (new Date(event_.endTime).getMinutes().toLocaleString().length > 1 ? new Date(event_.endTime).getMinutes() : '0' + new Date(event_.endTime).getMinutes() )+ ', MMM d, yyyy'),
+            startTime : event_.startTime,
+            endTime : event_.endTime,
             allDay: false,
           });
       }
@@ -320,10 +321,21 @@ export class Tab1Page {
     });
   }
 
+  async cutPauseString(pause){
+
+
+    // var pauseTime: number = parseInt(pause.substring(0,3)) * 60 + parseInt(pause.substring(3,5));
+    // var pauseTimeMinutes: number = parseInt(pause.substring(3,5));
+    let pauseTimeDecimal = (parseInt(pause.substring(0,3)) + parseInt((pause.substring(3,5)))/60);
+    console.log(pauseTimeDecimal);
+    this.pauseTimeDecimal = pauseTimeDecimal;
+  }
+
   // Calendar event was clicked
   async onEventSelected(event) {
     // Use Angular date pipe for conversion
-    var workHours = ((event.endTime - event.startTime)/3.6e+6)
+    var workHours = ((new Date(event.endTime).getHours()  - new Date(event.startTime).getHours()));
+    console.log("workHours: " + workHours);
     var pause;
     // if(event.pauseTime == "" || event.pauseTime == null)
     //   pause = this.pauseTime;
@@ -332,32 +344,41 @@ export class Tab1Page {
 
       if(workHours < 6){
         pause = this.pauseTime[0];
+
+        console.log("pause: " + this.pauseTime[0]);
       }
       else if(workHours >= 6 && workHours < 9){
         pause = this.pauseTime[1];
+        console.log("pause: " + this.pauseTime[1]);
       }
-      else if(workHours > 9){
+      else if(workHours >= 9){
         pause = this.pauseTime[2];
+        console.log("pause: " + this.pauseTime[2]);
       }
+      
+    this.cutPauseString(pause);
 
-    var pauseTime: number = parseInt(pause.substring(0,3)) * 60 + parseInt(pause.substring(3,5));
-    var pauseTimeMinutes: number = parseInt(pause.substring(3,5));
-    var pauseTimeDecimal = (parseInt(pause.substring(0,3)) + parseInt((pause.substring(3,5)))/60); //(parseInt(pause.substring(0,2)) + parseInt((pause.substring(3,5)))/3.6e+6);
+    //(parseInt(pause.substring(0,2)) + parseInt((pause.substring(3,5)))/3.6e+6);
     let start = formatDate(event.startTime, 'medium', this.locale);
     let end = formatDate(event.endTime, 'medium', this.locale);
-
-    var shiftTimeNettoHour:number = (new Date(event.endTime).getHours()  - new Date(event.startTime).getHours())/3.6e+6 ;
-    var shiftTimeNettoMinutes:number = (new Date(event.endTime).getMinutes() - new Date(event.startTime).getMinutes()) / 3.6e+6;
+      console.log("start: " + start);
+      console.log("end: " + end);
+    var shiftTimeNettoHour:number = (new Date(event.endTime).getHours()  - new Date(event.startTime).getHours()) ;
+    var shiftTimeNettoMinutes:number = (new Date(event.endTime).getMinutes() - new Date(event.startTime).getMinutes());
     console.log(shiftTimeNettoHour);
     console.log(this.timeUnits(shiftTimeNettoHour ));
     let shiftTimeBruttoHour= new Date(event.endTime).getHours() - new Date(event.startTime).getHours();
     let shiftTimeBruttoMinutes= new Date(event.endTime).getMinutes() - new Date(event.startTime).getMinutes();
-    let shiftTimeDecimalNetto = (((event.endTime - event.startTime)/3.6e+6) - pauseTimeDecimal).toFixed(2);
-    let shiftTimeDecimalBrutto= (((event.endTime - event.startTime)/3.6e+6)).toFixed(2);
+    //let shiftTimeDecimalNetto = (((event.endTime - event.startTime)/3.6e+6) - pauseTimeDecimal).toFixed(2);
+    //let shiftTimeDecimalNetto = (((event.endTime - event.startTime)/3.6e+6) ).toFixed(2);
+    let shiftTimeDecimalNetto = ((shiftTimeNettoHour + shiftTimeNettoMinutes/3.6e+6)).toFixed(2);
+    let shiftTimeDecimalBrutto= (((shiftTimeNettoHour + shiftTimeNettoMinutes/3.6e+6)) - this.pauseTimeDecimal ).toFixed(2);
     let date = formatDate(new Date(), 'medium', this.locale);
-   
+    console.log(this.pauseTimeDecimal);
+    //this.presentAlertCalendar('Schicht am '+ date.substring(0,12), event.desc, 
+    //'Schicht<br><br>Von: ' + start + '<br><br>Bis: ' + end + '<br><br>Dezimalansicht:<br><br>Arbeitszeit (netto): ' + shiftTimeDecimalNetto+ '<br>Pause: ' + pauseTimeDecimal.toFixed(2)  +'<br>Arbeitszeit (brutto): ' + shiftTimeDecimalBrutto
     this.presentAlertCalendar('Schicht am '+ date.substring(0,12), event.desc, 
-    'Schicht<br><br>Von: ' + start + '<br><br>Bis: ' + end + '<br><br>Dezimalansicht:<br><br>Arbeitszeit (netto): ' + shiftTimeDecimalNetto+ '<br>Pause: ' + pauseTimeDecimal.toFixed(2)  +'<br>Arbeitszeit (brutto): ' + shiftTimeDecimalBrutto
+    'Schicht<br><br>Von: ' + start + '<br><br>Bis: ' + end + '<br><br>Dezimalansicht:<br><br>Arbeitszeit (netto): ' + shiftTimeDecimalNetto +'<br>Arbeitszeit (brutto): ' + shiftTimeDecimalBrutto
     , 
     true, 
     event);

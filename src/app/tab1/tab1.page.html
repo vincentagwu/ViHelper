@@ -85,7 +85,7 @@
 
 
  <!-- page header -->
- <ion-header mode="ios">
+ <ion-header mode="ios" [class.dark-theme]="dark">
   <ion-toolbar>
       <ion-title size="large">
           Ion Calendar
@@ -99,7 +99,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" [class.dark-theme]="dark">
 
   <!-- view options -->
   <div class="view-options-container">
@@ -155,12 +155,12 @@
       <ion-list  *ngIf="this.eventSource !== null" inset="false" class="ion-no-padding" >
 
           <!-- design project landing page -->
-          <ion-item *ngFor="let event of this.eventSource" class="ion-no-padding" lines="none" (onEventSelected)="onEventSelected($event)">
+          <ion-item *ngFor="let event of this.eventSource" class="ion-no-padding" lines="none" (click)="onEventSelected(event)">
               <div class="event-container green" >
                   <ion-text>{{event.title}}</ion-text>
                   <div class="details-container">
                       <div class="indicator"></div>
-                      <ion-text>{{event.startTime}} - {{event.endTime}}</ion-text>
+                      <ion-text>{{event.startTime | date: "dd.MM.YYYY HH:mm"}} - {{event.endTime | date: "dd.MM.YYYY HH:mm"}}</ion-text>
                   </div>
               </div>
           </ion-item>
