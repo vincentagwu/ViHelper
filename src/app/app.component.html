@@ -1,60 +1,98 @@
 <ion-app [class.dark-theme]="dark">
   <ion-split-pane contentId="main-content">
 
-    <ion-menu contentId="main-content">
-      <ion-content>
-        <ion-list lines="none">
-          <ion-list-header>
-            Hilfen
-          </ion-list-header>
-          <ion-menu-toggle autoHide="false" *ngFor="let p of appPages; let i = index">
-            <ion-item [routerLink]="[p.url]" routerLinkActive="selected" routerDirection="root" detail="false">
-              <ion-icon slot="start" [name]="p.icon + '-outline'"></ion-icon>
-              <ion-label>
-                {{p.title}}
-              </ion-label>
-            </ion-item>
-
+   
+      <!-- side menu -->
+      <ion-menu side="start" menuId="first" contentId="mainContent">
+        <ion-content>
+          <!-- close button -->
+          <ion-menu-toggle>
+            <ion-button fill="clear" size="large" color="light">
+              <ion-icon name="close-outline"></ion-icon>
+            </ion-button>
           </ion-menu-toggle>
-        </ion-list>
-        <ion-list lines="none">
-          <ion-list-header>
-            App-Einstellung
-          </ion-list-header>
+    
+          <div class="menu-items-container">
+            <!-- app name -->
+            <ion-text>
+              <h2>ViHelper</h2>
+            </ion-text>
+    
 
-          <ion-item>
-            <ion-icon *ngIf="dark == null" color="dark" slot="start" name="moon-outline"></ion-icon>
-            <ion-icon *ngIf="dark == false" color="dark" slot="start" name="moon-outline"></ion-icon>
-            <ion-icon *ngIf="dark == true" color="warning" slot="start" name="moon-outline"></ion-icon>
-            <ion-label>
-              Dark Mode
-            </ion-label>
-            <ion-toggle [checked]="dark == true?true:false" [(ngModel)]="dark" (ionChange)="onClick($event)" slot="end"></ion-toggle>
-          </ion-item>
-        </ion-list>
-        <ion-list lines="none">
-          <ion-list-header>
-            Informationen
-          </ion-list-header>
-          <ion-item routerLink="tutorial"  detail="false">
-            <lottie-player class="lottie-player-icon" slot="start" autoplay loop  src="https://assets5.lottiefiles.com/packages/lf20_fgltupfx.json">
-            </lottie-player>
-            <!-- <ion-icon slot="start" name="gift-outline"></ion-icon> -->
-            <ion-label>
-              Geschenkinformation
-            </ion-label>
-          </ion-item>
-          <ion-menu-toggle autoHide="false">
-            <ion-item routerLink="information"  detail="false">
-              <ion-icon slot="start" name="information-circle"></ion-icon>
-              <ion-label>
-                Information
-              </ion-label>
-            </ion-item>
-          </ion-menu-toggle>
-        </ion-list>
-      </ion-content>
-    </ion-menu>
+            <ion-list lines="none">
+              <ion-list-header>
+                Hilfen
+              </ion-list-header>
+              <ion-menu-toggle autoHide="false" *ngFor="let p of appPages; let i = index">
+                <ion-item [routerLink]="[p.url]" routerLinkActive="selected" routerDirection="root" detail="false">
+                  <ion-icon slot="start" [name]="p.icon + '-outline'"></ion-icon>
+                  <ion-label>
+                    {{p.title}}
+                  </ion-label>
+                </ion-item>
+    
+              </ion-menu-toggle>
+            </ion-list>
+            <ion-list inset="false">
+              <ion-list-header>
+                App-Einstellungen
+              </ion-list-header>
+    
+              <!-- darkmode -->
+              <ion-item>
+                <div class="option-container">
+                  <div class="option-name"> 
+                  <ion-icon *ngIf="dark == null" color="dark" slot="start" name="moon-outline"></ion-icon>
+                  <ion-icon *ngIf="dark == false" color="dark" slot="start" name="moon-outline"></ion-icon>
+                  <ion-icon *ngIf="dark == true" color="warning" slot="start" name="moon-outline"></ion-icon>
+                  <ion-label>
+                    Dark Mode
+                  </ion-label>
+                  <ion-toggle [checked]="dark == true?true:false" [(ngModel)]="dark" (ionChange)="onClick($event)" slot="end"></ion-toggle>
+                  </div>
+                </div>
+              </ion-item>
+    
+              <ion-list-header>
+                Informationen
+              </ion-list-header>
+              <!-- presentinfo -->
+              <ion-item routerLink="tutorial"  detail="false">
+                <div class="option-container">
+                  <div class="option-name">
+                    <lottie-player class="lottie-player-icon" slot="start" autoplay loop  src="https://assets5.lottiefiles.com/packages/lf20_fgltupfx.json">
+                    </lottie-player>
+                    <ion-text>Geschenkinformation</ion-text>
+                  </div>
+                </div>
+              </ion-item>
+
+              <ion-menu-toggle autoHide="false">
+                <ion-item routerLink="information"  detail="false">
+                  <ion-icon slot="start" name="information-circle"></ion-icon>
+                  <ion-label>
+                    Information
+                  </ion-label>
+                </ion-item>
+              </ion-menu-toggle>
+            </ion-list>
+          </div>
+        </ion-content>
+      </ion-menu>
+    
+      <!-- page contents -->
+      <div class="ion-page" id="mainContent" main>
+        <ion-header>
+          <ion-toolbar>
+            <ion-buttons slot="start">
+              <ion-menu-button></ion-menu-button>
+            </ion-buttons>
+            <ion-title color="light"> Side Menu </ion-title>
+          </ion-toolbar>
+        </ion-header>
+      </div>
+    
+    
 
     <ion-router-outlet id="main-content" ></ion-router-outlet>
 
