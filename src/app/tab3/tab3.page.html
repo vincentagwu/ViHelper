@@ -71,19 +71,20 @@
         </ion-button>
       </ion-col>
     </ion-row>
-  <calendar 
-      [eventSource]="eventSource"
-      [calendarMode]="calendar.mode"
-      [currentDate]="calendar.currentDate"
-      [showEventDetail] = "true"
-      (onCurrentDateChanged)="onCurrentDateChanged($event)"
-      (onEventSelected)="onEventSelected($event)"
-      (onTitleChanged)="onViewTitleChanged($event)"
-      (onTimeSelected)="onTimeSelected($event)" 
-      startHour="6"
-      endHour="20"
-      step="30"
-      startingDayWeek="1">
+    
+    <calendar 
+        [eventSource]="eventSource"
+        [calendarMode]="calendar.mode"
+        [currentDate]="calendar.currentDate"
+        [showEventDetail] = "true"
+        (onCurrentDateChanged)="onCurrentDateChanged($event)"
+        (onEventSelected)="onEventSelected($event)"
+        (onTitleChanged)="onViewTitleChanged($event)"
+        (onTimeSelected)="onTimeSelected($event)" 
+        startHour="6"
+        endHour="20"
+        step="30"
+        startingDayWeek="1">
     </calendar>
   </div>
 <!-- 
@@ -108,6 +109,32 @@
     
     </ion-fab-list> -->
  <!-- </ion-fab> -->
+ <div class="events-container">
+    <ion-list  *ngIf="this.eventSource !== null" inset="false" class="ion-no-padding" >
+
+      <!-- design project landing page -->
+      <ion-item *ngFor="let event of this.eventSource" class="ion-no-padding" lines="none" (click)="onEventSelected(event)">
+          <div class="event-container green" >
+              <ion-text>{{event.title}}</ion-text>
+              <div class="details-container">
+                  <div class="indicator"></div>
+                  <ion-text>{{event.startTime | date: "dd.MM.YYYY HH:mm"}} - {{event.endTime | date: "dd.MM.YYYY HH:mm"}}</ion-text>
+              </div>
+          </div>
+      </ion-item>
+
+      <!-- meeting with client -->
+      <!-- <ion-item class="ion-no-padding" lines="none">
+          <div class="event-container blue">
+              <ion-text>Meeting with Client</ion-text>
+              <div class="details-container">
+                  <div class="indicator"></div>
+                  <ion-text>18.00 - 19.00</ion-text>
+              </div>
+          </div>
+      </ion-item> -->
+    </ion-list>
+    </div>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="openCalModal()">

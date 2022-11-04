@@ -10,7 +10,6 @@ import { timer, Observable } from 'rxjs';
 import {CalendarMode} from 'ionic2-calendar/calendar'
 import {format, parseISO,} from 'date-fns';
 import * as moment from "moment"; 
-
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',

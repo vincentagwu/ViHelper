@@ -26,9 +26,10 @@ export class Tab3Page {
   pauseTime = ['00:00', '00:30', '00:45'];
   did_tutorial;
   selectedDate;
+  selectedDateMode ="week";
 
   calendar = {
-    mode: 'month',
+    mode: 'week',
     currentDate: new Date()
   };
 
@@ -208,6 +209,7 @@ export class Tab3Page {
   
   // Change between month/week/day
   changeMode(mode) {
+    this.selectedDateMode = mode;
     this.calendar.mode = mode;
   }
   
@@ -380,14 +382,63 @@ export class Tab3Page {
   // this.event.endTime = new Date(ev.selectedTime);
   console.log('Selected time: ' + ev.selectedTime + ', hasEvents: ' +
       (ev.events !== undefined && ev.events.length !== 0) + ', disabled: ' + ev.disabled);
+      if(this.selectedDateMode === "week"){
+        this.dateSnippet = ev.substring(4, 8);
+        console.log(this.dateSnippet);
+        this.loadEventsMode(this.dateSnippet);
+      }
 }
-
+dateSnippet;
   onCurrentDateChanged(event: Date) {
     console.log('current date change: ' + event);
+    console.log(event.getDay().toString());
+    console.log(event.getMonth().toString());
+    console.log(event.getFullYear().toString());
+    if(this.selectedDateMode === "week"){
+      this.dateSnippet = event.toDateString().substring(4, 8);
+      console.log(this.dateSnippet);
+      //this.loadEventsMode(this.dateSnippet);
+    }
+  }
+
+  async loadEventsMode(mode){
+    this.calendar.currentDate = new Date();
+    this.data = JSON.parse(localStorage.getItem('appointments'));
+    this.tempEvents =  this.data ;
+    var events = [];
+    this.eventSource =[];
+      
+    console.log(mode);
+    await timer(300).subscribe(x => { 
+      for (let event_ of this.tempEvents ) {
+        if(event_.startTime.toString().includes(mode)){
+          events.push({
+            title: event_.title,
+            startTime : event_.startTime,
+            endTime : event_.endTime,
+            allDay: false,
+          });
+        }
+      }
+    });
+
+      await timer(300).subscribe(x => { 
+       this.data = JSON.parse(localStorage.getItem('appointments'));
+       
+        this.eventSource = events;
+        
+        console.log(this.eventSource);
+      });
+
   }
 
   onRangeChanged(ev) {
     console.log('range changed: startTime: ' + ev.startTime + ', endTime: ' + ev.endTime);
+      
+    if(this.selectedDateMode === "week"){
+      this.dateSnippet = ev.toDateString().substring(4, 8);
+      this.loadEventsMode(this.dateSnippet);
+    }
   }
 
   async showToast(msg) {
